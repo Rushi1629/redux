@@ -1,15 +1,26 @@
-import { useSelector } from "react-redux";
+
+import { useState } from "react";
 import Header from "./components/Header";
-import Product from "./components/Product";
+import Cart from "./components/Cart";
+import Products from "./components/Product";
 
 function App() {
-  const cartValue = useSelector((s) => s.cart.value);
-  console.log("Redux value:", cartValue);
+  const [showCart, setShowCart] = useState(false);
 
   return (
     <>
       <Header />
-      <Product />
+
+      <div className="p-6">
+        <button
+          className="bg-indigo-600 text-white px-4 py-2 mb-4"
+          onClick={() => setShowCart(!showCart)}
+        >
+          {showCart ? "Hide Cart" : "Show Cart"}
+        </button>
+
+        {showCart ? <Cart /> : <Products />}
+      </div>
     </>
   );
 }

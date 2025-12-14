@@ -77,11 +77,11 @@ const Products = () => {
 
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {products.map((product) => (
-            <div key={product.id} className="group relative">
+            <div key={product.id} className="group relative p-2 shadow-lg">
               <img
                 alt={product.imageAlt}
                 src={product.imageSrc}
-                className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80"
+                className="aspect-square w-full bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80 rounded-lg"
               />
               <div className="mt-4 flex justify-between">
                 <div>
@@ -92,9 +92,8 @@ const Products = () => {
                   {product.price}
                 </p>
               </div>
-
               <button
-                className="mt-3 bg-indigo-600 text-white px-3 py-2 w-full"
+                className="mt-3 bg-indigo-600 text-white px-3 py-2 w-full rounded-lg"
                 onClick={() => dispatch(addToCart(product))}
               >
                 Add to Cart

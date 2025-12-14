@@ -13,38 +13,38 @@ const Cart = () => {
 
   return (
     <>
-    <div className="p-6">
-      <h1 className="text-xl mb-4">Your Cart</h1>
+      <div className="p-6">
+        <h1 className="text-xl mb-4">Your Cart</h1>
 
-      {items.length === 0 && <p>No items in cart.</p>}
+        {items.length === 0 && <p>No items in cart.</p>}
 
-      {items.map((item) => (
-        <div key={item.id} className="flex justify-between px-4 py-3 bg-gray-100 mb-2">
-          <span>{item.name}</span>
+        {items.map((item) => (
+          <div key={item.id} className="flex justify-between px-4 py-3 bg-gray-100 mb-2">
+            <span>{item.name}</span>
 
-          <div className="flex items-center gap-2">
-            <button onClick={() => dispatch(decreaseQty(item.id))}>-</button>
-            <span>{item.qty}</span>
-            <button onClick={() => dispatch(increaseQty(item.id))}>+</button>
+            <div className="flex items-center gap-2">
+              <button onClick={() => dispatch(decreaseQty(item.id))}>-</button>
+              <span>{item.qty}</span>
+              <button onClick={() => dispatch(increaseQty(item.id))}>+</button>
+            </div>
+
+            <button className="text-red-600" onClick={() => dispatch(removeFromCart(item.id))}>
+              Remove
+            </button>
           </div>
+        ))}
 
-          <button className="text-red-600" onClick={() => dispatch(removeFromCart(item.id))}>
-            Remove
+        {items.length > 0 && (
+          <button
+            className="mt-4 bg-red-600 text-white p-2"
+            onClick={() => dispatch(clearCart())}
+          >
+            Clear Cart
           </button>
-        </div>
-      ))}
+        )}
+      </div>
 
-      {items.length > 0 && (
-        <button
-          className="mt-4 bg-red-600 text-white p-2"
-          onClick={() => dispatch(clearCart())}
-        >
-          Clear Cart
-        </button>
-      )}
-    </div>
-    
-    <Dialog open={open} onClose={setOpen} className="relative z-10">
+      <Dialog open={open} onClose={setOpen} className="relative z-10">
         <DialogBackdrop
           transition
           className="fixed inset-0 bg-gray-500/75 transition-opacity duration-500 ease-in-out data-closed:opacity-0"
